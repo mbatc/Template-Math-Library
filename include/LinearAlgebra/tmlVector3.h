@@ -119,6 +119,9 @@ public:
   };
 };
 
+template<typename T> inline tmlVector3<T> operator*(const T &lhs, const tmlVector3<T>& rhs);
+template<typename T> inline tmlVector3<T> operator/(const T &lhs, const tmlVector3<T>& rhs);
+
 #include "tmlVector3.inl"
 
 #endif // tmlVector3_h__

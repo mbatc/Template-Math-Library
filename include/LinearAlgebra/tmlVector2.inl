@@ -119,7 +119,7 @@ inline T tmlVector2<T>::Dot(const tmlVector2<T> &lhs, const tmlVector2<T> &rhs)
 template<typename T>
 inline T tmlVector2<T>::Angle(const tmlVector2<T> &lhs, const tmlVector2<T> &rhs)
 {
-  return atACos(Dot(lhs, rhs) / (lhs.Mag() * rhs.Mag()));
+  return tmlACos(Dot(lhs, rhs) / (lhs.Mag() * rhs.Mag()));
 }
 
 template<typename T>
@@ -137,13 +137,13 @@ inline tmlVector2<T> tmlVector2<T>::Reflect(const tmlVector2<T> &dir, const tmlV
 template<typename T>
 inline tmlVector2<T> tmlVector2<T>::Max(const tmlVector2<T> &a, const tmlVector2<T> &b)
 {
-  return tmlVector2<T>(atMax(a.x, b.x), atMax(a.y, b.y));
+  return tmlVector2<T>(atMax(a.x, b.x), tmlMax(a.y, b.y));
 }
 
 template<typename T>
 inline tmlVector2<T> tmlVector2<T>::Min(const tmlVector2<T> &a, const tmlVector2<T> &b)
 {
-  return tmlVector2<T>(atMin(a.x, b.x), atMin(a.y, b.y));
+  return tmlVector2<T>(atMin(a.x, b.x), tmlMin(a.y, b.y));
 }
 
 template<typename T>
@@ -233,7 +233,7 @@ inline tmlVector2<T> tmlVector2<T>::Clamp(const tmlVector2<T> &min, const tmlVec
 template<typename T>
 inline T tmlVector2<T>::Mag(const tmlVector2<T> &rhs)
 {
-  return atSqrt(Length(rhs));
+  return tmlSqrt(Length(rhs));
 }
 
 template<typename T>
@@ -323,7 +323,7 @@ inline tmlVector2<T> tmlVector2<T>::operator/(const tmlVector2<T> &rhs) const
 template<typename T>
 inline tmlVector2<T> tmlVector2<T>::operator%(const tmlVector2<T> &rhs) const
 {
-  return tmlVector2<T>(atMod(x, rhs.x), atMod(y, rhs.y));
+  return tmlVector2<T>(atMod(x, rhs.x), tmlMod(y, rhs.y));
 }
 
 template<typename T>
@@ -371,4 +371,22 @@ template<typename T>
 inline bool tmlVector2<T>::operator!=(const tmlVector2<T> &rhs) const
 {
   return !(*this == rhs);
+}
+
+template<typename T>
+inline T tmlATan2(const tmlVector2<T> &pos)
+{
+  return tmlATan2(pos.x, pos.y);
+}
+
+template<typename T>
+inline tmlVector2<T> operator*(const T &lhs, const tmlVector2<T>& rhs)
+{
+  return rhs * lhs;
+}
+
+template<typename T>
+inline tmlVector2<T> operator/(const T &lhs, const tmlVector2<T>& rhs)
+{
+  return tmlVector2<T>(lhs / rhs.x, lhs / rhs.y);
 }

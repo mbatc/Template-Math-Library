@@ -1,6 +1,8 @@
 #ifndef tmlVector2_h__
 #define tmlVector2_h__
 
+#include "tmlHelpers.h"
+
 template<typename T> class tmlVector2
 {
 public:
@@ -104,6 +106,11 @@ public:
     T m[ElementCount];
   };
 };
+
+template<typename T> inline T tmlATan2(const tmlVector2<T> &pos);
+
+template<typename T> inline tmlVector2<T> operator*(const T &lhs, const tmlVector2<T>& rhs);
+template<typename T> inline tmlVector2<T> operator/(const T &lhs, const tmlVector2<T>& rhs);
 
 #include "tmlVector2.inl"
 

@@ -20,19 +20,11 @@ public:
 
   template<typename T2> tmlMatrix4(const tmlMatrix4<T2> &copy);
 
-  static tmlMatrix4<T> Identity();
   tmlMatrix4<T> Transpose() const;
   tmlMatrix4<T> Cofactors() const;
   tmlMatrix4<T> Inverse() const;
 
   T Determinate() const;
-
-  template<typename T2> tmlMatrix4<T> Mul(const T2 &rhs) const;
-  template<typename T2> tmlMatrix4<T> Mul(const tmlMatrix4<T2> &rhs) const;
-  template<typename T2> tmlMatrix4<T> operator*(const tmlMatrix4<T2> &rhs) const;
-
-  template<typename T2> tmlMatrix4<T> Add(const tmlMatrix4<T2> &rhs) const;
-  template<typename T2> tmlMatrix4<T> Sub(const tmlMatrix4<T2> &rhs) const;
 
   tmlMatrix4<T> Mul(const T &rhs) const;
   tmlMatrix4<T> Sub(const T &rhs) const;
@@ -42,6 +34,29 @@ public:
   tmlVector4<T> Mul(const tmlVector4<T> &rhs) const;
   tmlVector3<T> Mul(const tmlVector3<T> &rhs) const;
   tmlMatrix4<T> Apply(T(*func)(const T &)) const;
+
+  tmlVector3<T> GetTranslation(const atMatrix4x4<T> &mat) const;
+  tmlVector3<T> GetRotation(const atMatrix4x4<T> &mat) const;
+  tmlVector3<T> GetScale(const atMatrix4x4<T> &mat) const;
+  tmlQuaternion<T> GetOrientation(const atMatrix4x4<T> &mat) const;
+
+  void Decompose(tmlVector3<T> *pTranslation, tmlVector3<T> *pRotation, tmlVector3<T> *pScale) const;
+
+  static tmlMatrix4<T> Identity();
+  static tmlMatrix4<T> Projection(const T aspect, const T FOV, const T nearPlane, const T farPlane, const T zClipNear = 0, const T zClipFar = 1);
+  static tmlMatrix4<T> Ortho(const T width, const T height, const T nearPlane, const T farPlane);
+  static tmlMatrix4<T> Ortho(const T left, const T right, const T top, const T bottom, const T nearPlane, const T farPlane);
+  static tmlMatrix4<T> RotationX(const T rads);
+  static tmlMatrix4<T> RotationY(const T rads);
+  static tmlMatrix4<T> RotationZ(const T rads);
+  static tmlMatrix4<T> Rotation(const atVector3<T> &axis, T rads);
+  static tmlMatrix4<T> Rotation(const atQuaternion<T> &quat);
+  static tmlMatrix4<T> YawPitchRoll(const T yaw, const T pitch, const T roll);
+  static tmlMatrix4<T> YawPitchRoll(const atVector3<T> &ypr);
+  static tmlMatrix4<T> Translation(const atVector3<T> &translation);
+  static tmlMatrix4<T> Scale(const atVector3<T> &scale);
+  static tmlMatrix4<T> Scale(const atVector4<T> &scale);
+  static tmlMatrix4<T> ScaleUniform(const T &scale);
 
   tmlVector4<T> operator*(const tmlVector4<T> &rhs) const;
   tmlVector3<T> operator*(const tmlVector3<T> &rhs) const;

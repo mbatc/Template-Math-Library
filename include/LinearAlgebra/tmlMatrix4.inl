@@ -150,99 +150,6 @@ inline tmlMatrix4<T> tmlMatrix4<T>::Apply(T(*func)(const T &)) const
 }
 
 template<typename T>
-template<typename T2>
-inline tmlMatrix4<T> tmlMatrix4<T>::Mul(const tmlMatrix4<T2> &rhs) const
-{
-  return tmlMatrix4<T>(
-    m[0] * (T)rhs.m[0] + m[1] * (T)rhs.m[4] + m[2] * (T)rhs.m[8] + m[3] * (T)rhs.m[12],
-    m[0] * (T)rhs.m[1] + m[1] * (T)rhs.m[5] + m[2] * (T)rhs.m[9] + m[3] * (T)rhs.m[13],
-    m[0] * (T)rhs.m[2] + m[1] * (T)rhs.m[6] + m[2] * (T)rhs.m[10] + m[3] * (T)rhs.m[14],
-    m[0] * (T)rhs.m[3] + m[1] * (T)rhs.m[7] + m[2] * (T)rhs.m[11] + m[3] * (T)rhs.m[15],
-
-    m[4] * (T)rhs.m[0] + m[5] * (T)rhs.m[4] + m[6] * (T)rhs.m[8] + m[7] * (T)rhs.m[12],
-    m[4] * (T)rhs.m[1] + m[5] * (T)rhs.m[5] + m[6] * (T)rhs.m[9] + m[7] * (T)rhs.m[13],
-    m[4] * (T)rhs.m[2] + m[5] * (T)rhs.m[6] + m[6] * (T)rhs.m[10] + m[7] * (T)rhs.m[14],
-    m[4] * (T)rhs.m[3] + m[5] * (T)rhs.m[7] + m[6] * (T)rhs.m[11] + m[7] * (T)rhs.m[15],
-
-    m[8] * (T)rhs.m[0] + m[9] * (T)rhs.m[4] + m[10] * (T)rhs.m[8] + m[11] * (T)rhs.m[12],
-    m[8] * (T)rhs.m[1] + m[9] * (T)rhs.m[5] + m[10] * (T)rhs.m[9] + m[11] * (T)rhs.m[13],
-    m[8] * (T)rhs.m[2] + m[9] * (T)rhs.m[6] + m[10] * (T)rhs.m[10] + m[12] * (T)rhs.m[14],
-    m[8] * (T)rhs.m[3] + m[9] * (T)rhs.m[7] + m[10] * (T)rhs.m[11] + m[12] * (T)rhs.m[15],
-
-    m[12] * (T)rhs.m[0] + m[13] * (T)rhs.m[4] + m[14] * (T)rhs.m[8] + m[15] * (T)rhs.m[12],
-    m[12] * (T)rhs.m[1] + m[13] * (T)rhs.m[5] + m[14] * (T)rhs.m[9] + m[15] * (T)rhs.m[13],
-    m[12] * (T)rhs.m[2] + m[13] * (T)rhs.m[6] + m[14] * (T)rhs.m[10] + m[15] * (T)rhs.m[14],
-    m[12] * (T)rhs.m[3] + m[13] * (T)rhs.m[7] + m[14] * (T)rhs.m[11] + m[15] * (T)rhs.m[15]);
-}
-
-template<typename T>
-template<typename T2>
-inline tmlMatrix4<T> tmlMatrix4<T>::Add(const tmlMatrix4<T2> &rhs) const
-{
-  return tmlMatrix4<T>(
-    m[0] + (T)rhs.m[0],
-    m[1] + (T)rhs.m[1],
-    m[2] + (T)rhs.m[2],
-    m[3] + (T)rhs.m[3],
-    m[4] + (T)rhs.m[4],
-    m[5] + (T)rhs.m[5],
-    m[6] + (T)rhs.m[6],
-    m[7] + (T)rhs.m[7],
-    m[8] + (T)rhs.m[8],
-    m[9] + (T)rhs.m[9],
-    m[10] + (T)rhs.m[10],
-    m[11] + (T)rhs.m[11],
-    m[12] + (T)rhs.m[12],
-    m[13] + (T)rhs.m[13],
-    m[14] + (T)rhs.m[14],
-    m[15] + (T)rhs.m[15]
-    );
-}
-
-template<typename T>
-template<typename T2>
-inline tmlMatrix4<T> tmlMatrix4<T>::Sub(const tmlMatrix4<T2> &rhs) const
-{
-  return tmlMatrix4<T>(
-    m[0] - (T)rhs.m[0],
-    m[1] - (T)rhs.m[1],
-    m[2] - (T)rhs.m[2],
-    m[3] - (T)rhs.m[3],
-    m[4] - (T)rhs.m[4],
-    m[5] - (T)rhs.m[5],
-    m[6] - (T)rhs.m[6],
-    m[7] - (T)rhs.m[7],
-    m[8] - (T)rhs.m[8],
-    m[9] - (T)rhs.m[9],
-    m[10] - (T)rhs.m[10],
-    m[11] - (T)rhs.m[11],
-    m[12] - (T)rhs.m[12],
-    m[13] - (T)rhs.m[13],
-    m[14] - (T)rhs.m[14],
-    m[15] - (T)rhs.m[15]
-    );
-}
-
-template<typename T>
-template<typename T2>
-inline tmlMatrix4<T>::tmlMatrix4(const tmlMatrix4<T2> &copy)
-{
-  *this = copy;
-}
-
-template<typename T>
-template<typename T2>
-inline tmlMatrix4<T> tmlMatrix4<T>::Mul(const T2 &rhs) const
-{
-  return tmlMatrix4<T>(
-    m[0] * (T)rhs, m[1] * (T)rhs, m[2] * (T)rhs, m[3] * (T)rhs,
-    m[4] * (T)rhs, m[5] * (T)rhs, m[6] * (T)rhs, m[7] * (T)rhs,
-    m[8] * (T)rhs, m[9] * (T)rhs, m[10] * (T)rhs, m[11] * (T)rhs,
-    m[12] * (T)rhs, m[13] * (T)rhs, m[14] * (T)rhs, m[15] * (T)rhs
-    );
-}
-
-template<typename T>
 inline tmlMatrix4<T> tmlMatrix4<T>::Mul(const T &rhs) const
 {
   return tmlMatrix4<T>(
@@ -306,22 +213,13 @@ inline tmlMatrix4<T> tmlMatrix4<T>::Inverse() const
 }
 
 template<typename T>
-template<typename T2>
-inline tmlMatrix4<T> tmlMatrix4<T>::operator*(const tmlMatrix4<T2> &rhs) const
-{
-  return Mul<T2>(rhs);
-}
-
-template<typename T>
-inline tmlVector4<T>
-inline tmlMatrix4<T>::operator*(const tmlVector4<T> &rhs) const
+inline tmlVector4<T> tmlMatrix4<T>::operator*(const tmlVector4<T> &rhs) const
 {
   return Mul(rhs);
 }
 
 template<typename T>
-inline tmlVector3<T>
-inline tmlMatrix4<T>::operator*(const tmlVector3<T> &rhs) const
+inline tmlVector3<T> tmlMatrix4<T>::operator*(const tmlVector3<T> &rhs) const
 { 
   return Mul(rhs);
 }
@@ -360,4 +258,173 @@ template<typename T>
 inline const T& tmlMatrix4<T>::operator[](const int64_t index) const
 {
   return m[index];
+}
+
+template<typename T> inline tmlMatrix4<T> tmlMatrix4::Projection(const T aspect, const T FOV, const T nearPlane, const T farPlane, const T clipSpaceNearZ, const T clipSpaceFarZ)
+{
+  const T A = (clipSpaceFarZ * farPlane - clipSpaceNearZ * nearPlane) / (nearPlane - farPlane);
+  const T B = (clipSpaceFarZ - clipSpaceNearZ) * farPlane * nearPlane / (nearPlane - farPlane);
+  const T yScale = 1.0 / atTan(FOV / 2);
+  return
+
+    tmlMatrix4<T>(
+      yScale / aspect, 0, 0, 0,
+      0, yScale, 0, 0,
+      0, 0, A, B,
+      0, 0, -1, 0
+      );
+}
+
+template<typename T> inline tmlMatrix4<T> tmlMatrix4::Ortho(const T width, const T height, const T nearPlane, const T farPlane) { return atMatrixOrtho<T>((T)0, width, (T)0, height, nearPlane, farPlane); }
+
+template<typename T> inline tmlMatrix4<T> tmlMatrix4::Ortho(const T left, const T right, const T top, const T bottom, const T nearPlane, const T farPlane)
+{
+  return
+    tmlMatrix4<T>(
+    (T)2 / (right - left), 0, 0, 0,
+      0, (T)2 / (top - bottom), 0, 0,
+      0, 0, 2 / (farPlane - nearPlane), 0,
+      -(right + left) / (right - left), -(top + bottom) / (top - bottom), -(farPlane + nearPlane) / (farPlane - nearPlane), 1
+      );
+}
+
+template<typename T> inline tmlMatrix4<T> tmlMatrix4::RotationX(const T rads)
+{
+  const T c = atCos(rads);
+  const T s = atSin(rads);
+  return
+    tmlMatrix4<T>(
+      1, 0, 0, 0,
+      0, c, -s, 0,
+      0, s, c, 0,
+      0, 0, 0, 1
+      );
+}
+
+template<typename T> inline tmlMatrix4<T> tmlMatrix4::RotationY(const T rads)
+{
+  const T c = atCos(rads);
+  const T s = atSin(rads);
+  return
+    tmlMatrix4<T>(
+      c, 0, s, 0,
+      0, 1, 0, 0,
+      -s, 0, c, 0,
+      0, 0, 0, 1
+      );
+}
+
+template<typename T> inline tmlMatrix4<T> tmlMatrix4::RotationZ(const T rads)
+{
+  const T c = atCos(rads);
+  const T s = atSin(rads);
+  return
+    tmlMatrix4<T>(
+      c, -s, 0, 0,
+      s, c, 0, 0,
+      0, 0, 1, 0,
+      0, 0, 0, 1
+      );
+}
+
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4::Rotation(const tmlVector3<T> &axis, T rads)
+{
+  T c = atCos(rads);
+  T s = atSin(rads);
+  return
+    tmlMatrix4<T>(
+      c + atSquare(axis.x) * (1 - c), axis.x * axis.y * (1 - c) - axis.z * s, axis.x * axis.z * (1 - c) + axis.y * s, 0,
+      axis.y * axis.x * (1 - c) + axis.z * s, c + atSquare(axis.y) * (1 - c), axis.y * axis.z * (1 - c) - axis.x * s, 0,
+      axis.z * axis.x * (1 - c) - axis.y * s, axis.z * axis.y * (1 - c) + axis.x * s, c + atSquare(axis.z) * (1 - c), 0,
+      0, 0, 0, 1
+      );
+}
+
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4::Rotation(const tmlQuaternion<T> &quat)
+{
+  const tmlQuaternion<T> &q = quat; // for shorter notation
+  const T d = q.Length();
+  if (d < atLimitsSmallest<T>())
+    return tmlMatrix4<T>::Identity();
+
+  T s = T(2) / d;
+  T xs = q.x * s, ys = q.y * s, zs = q.z * s;
+  T wx = q.w * xs, wy = q.w * ys, wz = q.w * zs;
+  T xx = q.x * xs, xy = q.x * ys, xz = q.x * zs;
+  T yy = q.y * ys, yz = q.y * zs, zz = q.z * zs;
+
+  return
+    tmlMatrix4<T>(
+      T(1) - (yy + zz), xy - wz, xz + wy, 0,
+      xy + wz, T(1) - (xx + zz), yz - wx, 0,
+      xz - wy, yz + wx, T(1) - (xx + yy), 0,
+      0, 0, 0, 1);
+}
+
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4::Translation(const tmlVector3<T> &translation)
+{
+  return
+    tmlMatrix4<T>(
+      1, 0, 0, translation.x,
+      0, 1, 0, translation.y,
+      0, 0, 1, translation.z,
+      0, 0, 0, 1
+      );
+}
+
+template<typename T> inline tmlMatrix4<T> tmlMatrix4::Scale(const tmlVector3<T> &scale)
+{
+  return
+    tmlMatrix4<T>(
+      scale.x, 0, 0, 0,
+      0, scale.y, 0, 0,
+      0, 0, scale.z, 0,
+      0, 0, 0, 1
+      );
+}
+
+template<typename T> inline tmlMatrix4<T> tmlMatrix4::Scale(const tmlVector4<T> &scale)
+{
+  return
+    tmlMatrix4<T>(
+      scale.x, 0, 0, 0,
+      0, scale.y, 0, 0,
+      0, 0, scale.z, 0,
+      0, 0, 0, scale.w
+      );
+}
+
+template<typename T> inline tmlMatrix4<T> tmlMatrix4::ScaleUniform(const T &scale)
+{
+  return
+    tmlMatrix4<T>(
+      1, 0, 0, 0,
+      0, 1, 0, 0,
+      0, 0, 1, 0,
+      0, 0, 0, (T)1 / scale
+      );
+}
+
+template<typename T> inline void tmlMatrix4::Decompose(const tmlMatrix4<T> &mat, tmlVector3<T> *pTranslation, tmlVector3<T> *pRotation, tmlVector3<T> *pScale)
+{
+  if (pTranslation) *pTranslation = atMatrixExtractTranslation(mat);
+  if (pRotation) *pRotation = atMatrixExtractRotation(mat);
+  if (pScale) *pScale = atMatrixExtractScale(mat);
+}
+
+template<typename T> inline tmlVector3<T> tmlMatrix4::GetRotation(const tmlMatrix4<T> &mat) { return GetOrientation(mat).Angle(); }
+
+template<typename T> inline tmlQuaternion<T> tmlMatrix4::GetOrientation(const tmlMatrix4<T> &mat) { return tmlQuaternion(mat).EulerAngles(); }
+
+template<typename T> inline tmlVector3<T> tmlMatrix4::GetTranslation(const tmlMatrix4<T> &mat) { return tmlVector3<T>(mat[3], mat[7], mat[11]); }
+
+template<typename T> inline tmlVector3<T> tmlMatrix4::GetScale(const tmlMatrix4<T> &mat)
+{
+  return tmlVector3<T>(
+    tmlVector3<T>(mat[0], mat[4], mat[12]).Mag(),
+    tmlVector3<T>(mat[1], mat[5], mat[13]).Mag(),
+    tmlVector3<T>(mat[2], mat[6], mat[14]).Mag());
 }

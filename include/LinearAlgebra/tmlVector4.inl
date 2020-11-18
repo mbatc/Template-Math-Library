@@ -214,13 +214,13 @@ inline T tmlVector4<T>::Dot(const tmlVector4<T> &lhs, const tmlVector4<T> &rhs)
 template<typename T>
 inline tmlVector4<T> tmlVector4<T>::Max(const tmlVector4<T> &a, const tmlVector4<T> &b)
 {
-  return tmlVector4<T>(atMax(a.x, b.x), atMax(a.y, b.y), atMax(a.z, b.z), atMax(a.w, b.w));
+  return tmlVector4<T>(atMax(a.x, b.x), tmlMax(a.y, b.y), tmlMax(a.z, b.z), tmlMax(a.w, b.w));
 }
 
 template<typename T>
 inline tmlVector4<T> tmlVector4<T>::Min(const tmlVector4<T> &a, const tmlVector4<T> &b)
 {
-  return tmlVector4<T>(atMin(a.x, b.x), atMin(a.y, b.y), atMin(a.z, b.z), atMin(a.w, b.w));
+  return tmlVector4<T>(atMin(a.x, b.x), tmlMin(a.y, b.y), tmlMin(a.z, b.z), tmlMin(a.w, b.w));
 }
 
 template<typename T>
@@ -376,7 +376,7 @@ inline tmlVector4<T> tmlVector4<T>::Clamp(const tmlVector4<T> &min, const tmlVec
 template<typename T>
 inline T tmlVector4<T>::Mag(const tmlVector4<T> &rhs)
 {
-  return atSqrt(Length(rhs));
+  return tmlSqrt(Length(rhs));
 }
 
 template<typename T>
@@ -388,7 +388,7 @@ inline T tmlVector4<T>::Length(const tmlVector4<T> &rhs)
 template<typename T>
 inline T tmlVector4<T>::Angle(const tmlVector4<T> &lhs, const tmlVector4<T> &rhs)
 {
-  return atACos(Dot(lhs, rhs) / (Mag(lhs) * Mag(rhs)));
+  return tmlACos(Dot(lhs, rhs) / (Mag(lhs) * Mag(rhs)));
 }
 
 template<typename T>
@@ -496,7 +496,7 @@ inline const tmlVector4<T>& tmlVector4<T>::operator/=(const tmlVector4<T> &rhs)
 template<typename T>
 inline const tmlVector4<T>& tmlVector4<T>::operator%=(const tmlVector4<T> &rhs)
 {
-  return assign(atMod(x, rhs.x), atMod(y, rhs.y), atMod(z, rhs.z), atMod(w, rhs.w));
+  return assign(atMod(x, rhs.x), tmlMod(y, rhs.y), tmlMod(z, rhs.z), tmlMod(w, rhs.w));
 }
 
 template<typename T>
@@ -551,4 +551,16 @@ template<typename T>
 inline T* tmlVector4<T>::data()
 {
   return m;
+}
+
+template<typename T>
+inline tmlVector4<T> operator*(const T &lhs, const tmlVector4<T> &rhs)
+{
+  return rhs * lhs;
+}
+
+template<typename T>
+inline tmlVector4<T> operator/(const T &lhs, const tmlVector4<T> &rhs)
+{
+  return tmlVector4<T>(lhs / rhs.x, lhs / rhs.y, lhs / rhs.z, lhs / rhs.w);
 }

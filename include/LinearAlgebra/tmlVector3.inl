@@ -52,7 +52,7 @@ inline tmlVector3<T>::tmlVector3(T2 _x, T2 _y, T2 _z)
 
 template<typename T>
 template<typename T2>
-inline tmlVector3<T>::tmlVector3(T2 _x, const atVector2<T2> &yz)
+inline tmlVector3<T>::tmlVector3(T2 _x, const tmlVector2<T2> &yz)
   : x((T)_x)
   , y((T)yz.x)
   , z((T)yz.y)
@@ -60,7 +60,7 @@ inline tmlVector3<T>::tmlVector3(T2 _x, const atVector2<T2> &yz)
 
 template<typename T>
 template<typename T2>
-inline tmlVector3<T>::tmlVector3(const atVector2<T2> &xy, T2 _z)
+inline tmlVector3<T>::tmlVector3(const tmlVector2<T2> &xy, T2 _z)
   : x((T)xy.x)
   , y((T)xy.y)
   , z((T)_z)
@@ -154,13 +154,13 @@ inline tmlVector3<T> tmlVector3<T>::Project(const tmlVector3<T>& vec, const tmlV
 template<typename T>
 inline tmlVector3<T> tmlVector3<T>::Max(const tmlVector3<T> &a, const tmlVector3<T> &b)
 {
-  return tmlVector3<T>(atMax(a.x, b.x), atMax(a.y, b.y), atMax(a.z, b.z));
+  return tmlVector3<T>(atMax(a.x, b.x), tmlMax(a.y, b.y), tmlMax(a.z, b.z));
 }
 
 template<typename T>
 inline tmlVector3<T> tmlVector3<T>::Min(const tmlVector3<T> &a, const tmlVector3<T> &b)
 {
-  return tmlVector3<T>(atMin(a.x, b.x), atMin(a.y, b.y), atMin(a.z, b.z));
+  return tmlVector3<T>(atMin(a.x, b.x), tmlMin(a.y, b.y), tmlMin(a.z, b.z));
 }
 
 template<typename T>
@@ -170,12 +170,12 @@ inline tmlVector3<T> tmlVector3<T>::Clamp(const tmlVector3<T> &vec, const tmlVec
 }
 
 template<typename T>
-inline tmlVector3<T>::tmlVector3(T _x, const atVector2<T>& yz)
+inline tmlVector3<T>::tmlVector3(T _x, const tmlVector2<T>& yz)
   : tmlVector3(_x, yz.x, yz.y)
 {}
 
 template<typename T>
-inline tmlVector3<T>::tmlVector3(const atVector2<T>& xy, T _z)
+inline tmlVector3<T>::tmlVector3(const tmlVector2<T>& xy, T _z)
   : tmlVector3(xy.x, xy.y, _z)
 {}
 
@@ -272,13 +272,13 @@ inline tmlVector3<T> tmlVector3<T>::Clamp(const tmlVector3<T> &min, const tmlVec
 template<typename T>
 inline T tmlVector3<T>::Mag(const tmlVector3<T> &rhs)
 {
-  return atSqrt(Length(rhs));
+  return tmlSqrt(Length(rhs));
 }
 
 template<typename T>
 inline T tmlVector3<T>::Angle(const tmlVector3<T> &lhs, const tmlVector3<T> &rhs)
 {
-  return atACos(Dot(lhs, rhs) / (Mag(lhs) * Mag(rhs)));
+  return tmlACos(Dot(lhs, rhs) / (Mag(lhs) * Mag(rhs)));
 }
 
 template<typename T>
@@ -300,21 +300,21 @@ inline tmlVector3<T> tmlVector3<T>::one()
 }
 
 template<typename T>
-inline atVector2<T> tmlVector3<T>::xy() const
+inline tmlVector2<T> tmlVector3<T>::xy() const
 {
-  return atVector2<T>(x, y);
+  return tmlVector2<T>(x, y);
 }
 
 template<typename T>
-inline atVector2<T> tmlVector3<T>::xz() const
+inline tmlVector2<T> tmlVector3<T>::xz() const
 {
-  return atVector2<T>(x, z);
+  return tmlVector2<T>(x, z);
 }
 
 template<typename T>
-inline atVector2<T> tmlVector3<T>::yz() const
+inline tmlVector2<T> tmlVector3<T>::yz() const
 {
-  return atVector2<T>(y, z);
+  return tmlVector2<T>(y, z);
 }
 
 template<typename T>
@@ -362,7 +362,7 @@ inline tmlVector3<T> tmlVector3<T>::operator/(const tmlVector3<T>& rhs) const
 template<typename T>
 inline tmlVector3<T> tmlVector3<T>::operator%(const tmlVector3<T>& rhs) const
 {
-  return tmlVector3<T>(atMod(x, rhs.x), atMod(y, rhs.y), atMod(z, rhs.z));
+  return tmlVector3<T>(atMod(x, rhs.x), tmlMod(y, rhs.y), tmlMod(z, rhs.z));
 }
 
 template<typename T>
@@ -447,4 +447,16 @@ template<typename T>
 inline T* tmlVector3<T>::data()
 {
   return m;
+}
+
+template<typename T>
+inline tmlVector3<T> operator*(const T &lhs, const tmlVector3<T>& rhs)
+{
+  return rhs * lhs;
+}
+
+template<typename T>
+inline tmlVector3<T> operator/(const T &lhs, const tmlVector3<T>& rhs)
+{
+  return tmlVector3<T>(lhs / rhs.x, lhs / rhs.y, lhs / rhs.z);
 }
