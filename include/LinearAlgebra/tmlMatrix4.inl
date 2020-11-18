@@ -39,15 +39,6 @@ inline tmlMatrix4<T>::tmlMatrix4(tmlMatrix4<T> &&move)
 }
 
 template<typename T>
-template<typename T2>
-inline const tmlMatrix4<T>& tmlMatrix4<T>::operator=(const tmlMatrix4<T2> &copy)
-{
-  for (int64_t i = 0; i < 16; ++i)
-    m[i] = (T)copy[i];
-  return *this;
-}
-
-template<typename T>
 inline tmlMatrix4<T> tmlMatrix4<T>::Identity()
 {
   return tmlMatrix4<T>(
@@ -260,7 +251,8 @@ inline const T& tmlMatrix4<T>::operator[](const int64_t index) const
   return m[index];
 }
 
-template<typename T> inline tmlMatrix4<T> tmlMatrix4::Projection(const T aspect, const T FOV, const T nearPlane, const T farPlane, const T clipSpaceNearZ, const T clipSpaceFarZ)
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4<T>::Projection(const T aspect, const T FOV, const T nearPlane, const T farPlane, const T clipSpaceNearZ, const T clipSpaceFarZ)
 {
   const T A = (clipSpaceFarZ * farPlane - clipSpaceNearZ * nearPlane) / (nearPlane - farPlane);
   const T B = (clipSpaceFarZ - clipSpaceNearZ) * farPlane * nearPlane / (nearPlane - farPlane);
@@ -275,9 +267,11 @@ template<typename T> inline tmlMatrix4<T> tmlMatrix4::Projection(const T aspect,
       );
 }
 
-template<typename T> inline tmlMatrix4<T> tmlMatrix4::Ortho(const T width, const T height, const T nearPlane, const T farPlane) { return atMatrixOrtho<T>((T)0, width, (T)0, height, nearPlane, farPlane); }
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4<T>::Ortho(const T width, const T height, const T nearPlane, const T farPlane) { return atMatrixOrtho<T>((T)0, width, (T)0, height, nearPlane, farPlane); }
 
-template<typename T> inline tmlMatrix4<T> tmlMatrix4::Ortho(const T left, const T right, const T top, const T bottom, const T nearPlane, const T farPlane)
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4<T>::Ortho(const T left, const T right, const T top, const T bottom, const T nearPlane, const T farPlane)
 {
   return
     tmlMatrix4<T>(
@@ -288,7 +282,8 @@ template<typename T> inline tmlMatrix4<T> tmlMatrix4::Ortho(const T left, const 
       );
 }
 
-template<typename T> inline tmlMatrix4<T> tmlMatrix4::RotationX(const T rads)
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4<T>::RotationX(const T rads)
 {
   const T c = atCos(rads);
   const T s = atSin(rads);
@@ -301,7 +296,8 @@ template<typename T> inline tmlMatrix4<T> tmlMatrix4::RotationX(const T rads)
       );
 }
 
-template<typename T> inline tmlMatrix4<T> tmlMatrix4::RotationY(const T rads)
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4<T>::RotationY(const T rads)
 {
   const T c = atCos(rads);
   const T s = atSin(rads);
@@ -314,7 +310,8 @@ template<typename T> inline tmlMatrix4<T> tmlMatrix4::RotationY(const T rads)
       );
 }
 
-template<typename T> inline tmlMatrix4<T> tmlMatrix4::RotationZ(const T rads)
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4<T>::RotationZ(const T rads)
 {
   const T c = atCos(rads);
   const T s = atSin(rads);
@@ -328,7 +325,7 @@ template<typename T> inline tmlMatrix4<T> tmlMatrix4::RotationZ(const T rads)
 }
 
 template<typename T>
-inline tmlMatrix4<T> tmlMatrix4::Rotation(const tmlVector3<T> &axis, T rads)
+inline tmlMatrix4<T> tmlMatrix4<T>::Rotation(const tmlVector3<T> &axis, T rads)
 {
   T c = atCos(rads);
   T s = atSin(rads);
@@ -342,7 +339,7 @@ inline tmlMatrix4<T> tmlMatrix4::Rotation(const tmlVector3<T> &axis, T rads)
 }
 
 template<typename T>
-inline tmlMatrix4<T> tmlMatrix4::Rotation(const tmlQuaternion<T> &quat)
+inline tmlMatrix4<T> tmlMatrix4<T>::Rotation(const tmlQuaternion<T> &quat)
 {
   const tmlQuaternion<T> &q = quat; // for shorter notation
   const T d = q.Length();
@@ -364,7 +361,7 @@ inline tmlMatrix4<T> tmlMatrix4::Rotation(const tmlQuaternion<T> &quat)
 }
 
 template<typename T>
-inline tmlMatrix4<T> tmlMatrix4::Translation(const tmlVector3<T> &translation)
+inline tmlMatrix4<T> tmlMatrix4<T>::Translation(const tmlVector3<T> &translation)
 {
   return
     tmlMatrix4<T>(
@@ -375,7 +372,8 @@ inline tmlMatrix4<T> tmlMatrix4::Translation(const tmlVector3<T> &translation)
       );
 }
 
-template<typename T> inline tmlMatrix4<T> tmlMatrix4::Scale(const tmlVector3<T> &scale)
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4<T>::Scale(const tmlVector3<T> &scale)
 {
   return
     tmlMatrix4<T>(
@@ -386,7 +384,8 @@ template<typename T> inline tmlMatrix4<T> tmlMatrix4::Scale(const tmlVector3<T> 
       );
 }
 
-template<typename T> inline tmlMatrix4<T> tmlMatrix4::Scale(const tmlVector4<T> &scale)
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4<T>::Scale(const tmlVector4<T> &scale)
 {
   return
     tmlMatrix4<T>(
@@ -397,7 +396,8 @@ template<typename T> inline tmlMatrix4<T> tmlMatrix4::Scale(const tmlVector4<T> 
       );
 }
 
-template<typename T> inline tmlMatrix4<T> tmlMatrix4::ScaleUniform(const T &scale)
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4<T>::ScaleUniform(const T &scale)
 {
   return
     tmlMatrix4<T>(
@@ -408,23 +408,78 @@ template<typename T> inline tmlMatrix4<T> tmlMatrix4::ScaleUniform(const T &scal
       );
 }
 
-template<typename T> inline void tmlMatrix4::Decompose(const tmlMatrix4<T> &mat, tmlVector3<T> *pTranslation, tmlVector3<T> *pRotation, tmlVector3<T> *pScale)
-{
-  if (pTranslation) *pTranslation = atMatrixExtractTranslation(mat);
-  if (pRotation) *pRotation = atMatrixExtractRotation(mat);
-  if (pScale) *pScale = atMatrixExtractScale(mat);
-}
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4<T>::YawPitchRoll(const T yaw, const T pitch, const T roll) { return RotationY(yaw) * RotationX(pitch) * RotationZ(roll); }
 
-template<typename T> inline tmlVector3<T> tmlMatrix4::GetRotation(const tmlMatrix4<T> &mat) { return GetOrientation(mat).Angle(); }
+template<typename T>
+inline tmlMatrix4<T> tmlMatrix4<T>::YawPitchRoll(const tmlVector3<T> &ypr) { return YawPitchRoll(ypr.x, ypr.y, ypr.z); }
 
-template<typename T> inline tmlQuaternion<T> tmlMatrix4::GetOrientation(const tmlMatrix4<T> &mat) { return tmlQuaternion(mat).EulerAngles(); }
+template<typename T>
+inline tmlVector3<T> tmlMatrix4<T>::GetRotation() const { return GetOrientation().EulerAngles(); }
 
-template<typename T> inline tmlVector3<T> tmlMatrix4::GetTranslation(const tmlMatrix4<T> &mat) { return tmlVector3<T>(mat[3], mat[7], mat[11]); }
+template<typename T>
+inline tmlVector3<T> tmlMatrix4<T>::GetTranslation() const { return tmlVector3<T>(m[3], m[7], m[11]); }
 
-template<typename T> inline tmlVector3<T> tmlMatrix4::GetScale(const tmlMatrix4<T> &mat)
+template<typename T>
+inline tmlVector3<T> tmlMatrix4<T>::GetScale() const
 {
   return tmlVector3<T>(
-    tmlVector3<T>(mat[0], mat[4], mat[12]).Mag(),
-    tmlVector3<T>(mat[1], mat[5], mat[13]).Mag(),
-    tmlVector3<T>(mat[2], mat[6], mat[14]).Mag());
+    tmlVector3<T>(m[0], m[4], m[12]).Mag(),
+    tmlVector3<T>(m[1], m[5], m[13]).Mag(),
+    tmlVector3<T>(m[2], m[6], m[14]).Mag());
+}
+
+template<typename T>
+inline tmlQuaternion<T> tmlMatrix4<T>::GetOrientation() const
+{
+  T x = T{0};
+  T y = T{0};
+  T z = T{0};
+  T w = T{0};
+  T trace = m[0] + m[5] + m[10];
+  if (trace > tmlLimitsSmallest<T>())
+  {
+    T s = T(0.5) / tmlSqrt(trace + T(1));
+    w = T(0.25) / s;
+    x = (m[9] - m[6]) * s;
+    y = (m[2] - m[8]) * s;
+    z = (m[4] - m[1]) * s;
+  }
+  else
+  {
+    if (m[0] > m[5] && m[0] > m[10])
+    {
+      T s = T(2) * tmlSqrt(T(1) + m[0] - m[5] - m[10]);
+      w = (m[9] - m[6]) / s;
+      x = T(0.25) * s;
+      y = (m[1] + m[4]) / s;
+      z = (m[2] + m[8]) / s;
+    }
+    else if (m[5] > m[10])
+    {
+      T s = T(2) * tmlSqrt(T(1) + m[5] - m[0] - m[10]);
+      w = (m[2] - m[8]) / s;
+      x = (m[1] + m[4]) / s;
+      y = T(0.25) * s;
+      z = (m[6] + m[9]) / s;
+    }
+    else
+    {
+      T s = T(2) * tmlSqrt(T(1) + m[10] - m[0] - m[5]);
+      w = (m[4] - m[1]) / s;
+      x = (m[2] + m[8]) / s;
+      y = (m[6] + m[9]) / s;
+      z = T(0.25) * s;
+    }
+  }
+
+  return tmlQuaternion(x, y, z, w);
+}
+
+template<typename T>
+inline void tmlMatrix4<T>::Decompose(tmlVector3<T> *pTranslation, tmlVector3<T> *pRotation, tmlVector3<T> *pScale) const
+{
+  if (pTranslation) *pTranslation = GetTranslation();
+  if (pRotation) *pRotation = GetRotation();
+  if (pScale) *pScale = GetScale();
 }

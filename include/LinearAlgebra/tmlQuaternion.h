@@ -1,7 +1,7 @@
 #ifndef tmlQuaternion_h__
 #define tmlQuaternion_h__
 
-#include "tmlMatrix4.h"
+#include "tmlVector3.h"
 
 template<typename T>
 class tmlQuaternion
@@ -11,12 +11,10 @@ public:
   tmlQuaternion(const T &x, const T &y, const T &z, const T &w);
   tmlQuaternion(const tmlVector3<T> &axis, const T &angle);
   tmlQuaternion(const T &eulerX, const T &eulerY, const T &eulerZ);
-  explicit tmlQuaternion(const atMatrix4x4<T> &rotation);
 
   void Set(const T &x, const T &y, const T &z, const T &w);
   void Set(const tmlVector3<T> &axis, const T &angle);
   void Set(const T &eulerX, const T &eulerY, const T &eulerZ);
-  void Set(const atMatrix4x4<T> &rotation);
 
   static tmlQuaternion<T> zero();
   static tmlQuaternion<T> Identity();

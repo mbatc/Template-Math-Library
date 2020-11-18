@@ -60,38 +60,4 @@ inline int32_t tmlSqrt(const int32_t &val);
 inline int16_t tmlSqrt(const int16_t &val);
 inline int8_t tmlSqrt(const int8_t &val);
 
-template<typename T> inline atVector2<T> tmlSolveQuadratic(const T &a, const T &b, const T &c);
-
-typedef atVector2<int32_t> atVec2I;
-typedef atVector3<int32_t> atVec3I;
-typedef atVector4<int32_t> atVec4I;
-
-typedef atVector2<int64_t> atVec2I64;
-typedef atVector3<int64_t> atVec3I64;
-typedef atVector4<int64_t> atVec4I64;
-
-typedef atVector2<float> atVec2F;
-typedef atVector3<float> atVec3F;
-typedef atVector4<float> atVec4F;
-
-typedef atVector2<double> atVec2D;
-typedef atVector3<double> atVec3D;
-typedef atVector4<double> atVec4D;
-
-typedef atMatrix4x4<double> atMat4D;
-typedef atMatrix4x4<float> atMat4F;
-
-typedef atQuaternion<double> atQuatD;
-typedef atQuaternion<float> atQuatF;
-
-#include "atQuaternion.h" // atQuaternion relies on some of the above functions
-
-template<typename T> inline atVector4<T> operator*(const T &lhs, const atVector4<T> &rhs);
-template<typename T> inline atVector3<T> operator*(const T &lhs, const atVector3<T> &rhs);
-template<typename T> inline atVector2<T> operator*(const T &lhs, const atVector2<T> &rhs);
-
-template<typename T> inline atVector4<T> operator/(const T &lhs, const atVector4<T> &rhs);
-template<typename T> inline atVector3<T> operator/(const T &lhs, const atVector3<T> &rhs);
-template<typename T> inline atVector2<T> operator/(const T &lhs, const atVector2<T> &rhs);
-
 #endif // tmlHelpers_h__

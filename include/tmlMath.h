@@ -4,3 +4,4 @@
 #include "LinearAlgebra/tmlVector3.h"
 #include "LinearAlgebra/tmlVector4.h"
 #include "LinearAlgebra/tmlMatrix4.h"
+#include "LinearAlgebra/tmlQuaternion.h"

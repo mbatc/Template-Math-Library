@@ -6,9 +6,6 @@ template<typename T>
 inline tmlQuaternion<T>::tmlQuaternion(const T &eulerX, const T &eulerY, const T &eulerZ) { Set(eulerX, eulerY, eulerZ); }
 
 template<typename T>
-inline tmlQuaternion<T>::tmlQuaternion(const tmlMatrix4<T> &rotation) { Set(rotation); }
-
-template<typename T>
 inline tmlQuaternion<T>::tmlQuaternion()
   : x(0)
   , y(0)
@@ -55,47 +52,6 @@ inline void tmlQuaternion<T>::Set(const T &eulerX, const T &eulerY, const T &eul
   x = cy * cp * sr - sy * sp * cr;
   y = sy * cp * sr + cy * sp * cr;
   z = sy * cp * cr - cy * sp * sr;
-}
-
-template<typename T>
-inline void tmlQuaternion<T>::Set(const tmlMatrix4<T> &rotation)
-{
-  T trace = rotation[0] + rotation[5] + rotation[10];
-  if (trace > tmlLimitsSmallest<T>())
-  {
-    T s = T(0.5) / tmlSqrt(trace + T(1));
-    w = T(0.25) / s;
-    x = (rotation[9] - rotation[6]) * s;
-    y = (rotation[2] - rotation[8]) * s;
-    z = (rotation[4] - rotation[1]) * s;
-  }
-  else
-  {
-    if (rotation[0] > rotation[5] && rotation[0] > rotation[10])
-    {
-      T s = T(2) * tmlSqrt(T(1) + rotation[0] - rotation[5] - rotation[10]);
-      w = (rotation[9] - rotation[6]) / s;
-      x = T(0.25) * s;
-      y = (rotation[1] + rotation[4]) / s;
-      z = (rotation[2] + rotation[8]) / s;
-    }
-    else if (rotation[5] > rotation[10])
-    {
-      T s = T(2) * tmlSqrt(T(1) + rotation[5] - rotation[0] - rotation[10]);
-      w = (rotation[2] - rotation[8]) / s;
-      x = (rotation[1] + rotation[4]) / s;
-      y = T(0.25) * s;
-      z = (rotation[6] + rotation[9]) / s;
-    }
-    else
-    {
-      T s = T(2) * tmlSqrt(T(1) + rotation[10] - rotation[0] - rotation[5]);
-      w = (rotation[4] - rotation[1]) / s;
-      x = (rotation[2] + rotation[8]) / s;
-      y = (rotation[6] + rotation[9]) / s;
-      z = T(0.25) * s;
-    }
-  }
 }
 
 template<typename T>

@@ -374,6 +374,14 @@ inline bool tmlVector2<T>::operator!=(const tmlVector2<T> &rhs) const
 }
 
 template<typename T>
+inline tmlVector2<T> tmlSolveQuadratic(const T &a, const T &b, const T &c)
+{
+  T val = (T)sqrt(b * b - 4 * a * c);
+  T ac_2 = 2 * a * c;
+  return tmlVector2<T>((-b - val) / ac_2, (-b + val) / ac_2);
+}
+
+template<typename T>
 inline T tmlATan2(const tmlVector2<T> &pos)
 {
   return tmlATan2(pos.x, pos.y);

@@ -2,6 +2,7 @@
 #define tmlMatrix4_h__
 
 #include "tmlVector4.h"
+#include "tmlQuaternion.h"
 
 template<typename T> inline T atMatrixDet2x2(T a, T b, T c, T d);
 template<typename T> inline T atMatrixDet3x3(T a, T b, T c, T d, T e, T f, T g, T h, T i);
@@ -35,10 +36,10 @@ public:
   tmlVector3<T> Mul(const tmlVector3<T> &rhs) const;
   tmlMatrix4<T> Apply(T(*func)(const T &)) const;
 
-  tmlVector3<T> GetTranslation(const atMatrix4x4<T> &mat) const;
-  tmlVector3<T> GetRotation(const atMatrix4x4<T> &mat) const;
-  tmlVector3<T> GetScale(const atMatrix4x4<T> &mat) const;
-  tmlQuaternion<T> GetOrientation(const atMatrix4x4<T> &mat) const;
+  tmlVector3<T> GetTranslation() const;
+  tmlVector3<T> GetRotation() const;
+  tmlVector3<T> GetScale() const;
+  tmlQuaternion<T> GetOrientation() const;
 
   void Decompose(tmlVector3<T> *pTranslation, tmlVector3<T> *pRotation, tmlVector3<T> *pScale) const;
 
@@ -49,13 +50,13 @@ public:
   static tmlMatrix4<T> RotationX(const T rads);
   static tmlMatrix4<T> RotationY(const T rads);
   static tmlMatrix4<T> RotationZ(const T rads);
-  static tmlMatrix4<T> Rotation(const atVector3<T> &axis, T rads);
-  static tmlMatrix4<T> Rotation(const atQuaternion<T> &quat);
+  static tmlMatrix4<T> Rotation(const tmlVector3<T> &axis, T rads);
+  static tmlMatrix4<T> Rotation(const tmlQuaternion<T> &quat);
   static tmlMatrix4<T> YawPitchRoll(const T yaw, const T pitch, const T roll);
-  static tmlMatrix4<T> YawPitchRoll(const atVector3<T> &ypr);
-  static tmlMatrix4<T> Translation(const atVector3<T> &translation);
-  static tmlMatrix4<T> Scale(const atVector3<T> &scale);
-  static tmlMatrix4<T> Scale(const atVector4<T> &scale);
+  static tmlMatrix4<T> YawPitchRoll(const tmlVector3<T> &ypr);
+  static tmlMatrix4<T> Translation(const tmlVector3<T> &translation);
+  static tmlMatrix4<T> Scale(const tmlVector3<T> &scale);
+  static tmlMatrix4<T> Scale(const tmlVector4<T> &scale);
   static tmlMatrix4<T> ScaleUniform(const T &scale);
 
   tmlVector4<T> operator*(const tmlVector4<T> &rhs) const;

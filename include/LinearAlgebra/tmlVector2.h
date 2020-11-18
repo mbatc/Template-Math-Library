@@ -108,6 +108,7 @@ public:
 };
 
 template<typename T> inline T tmlATan2(const tmlVector2<T> &pos);
+template<typename T> inline tmlVector2<T> tmlSolveQuadratic(const T &a, const T &b, const T &c);
 
 template<typename T> inline tmlVector2<T> operator*(const T &lhs, const tmlVector2<T>& rhs);
 template<typename T> inline tmlVector2<T> operator/(const T &lhs, const tmlVector2<T>& rhs);
