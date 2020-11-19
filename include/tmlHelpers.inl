@@ -77,13 +77,13 @@ inline T tmlClamp(const T &val, const T2 &min, const T3 &max)
 }
 
 template<typename InT, typename OutT>
-inline OutT tmlDerivative(const InT &val, const std::function<OutT(InT)> &func, const InT step)
+inline OutT tmlDerivative(const InT &val, OutT(*func)(InT), const InT step)
 {
   return OutT(func(val + step) - func(val - step)) / (step * 2);
 }
 
 template<typename InT, typename OutT>
-inline OutT tmlNthDerivative(const InT &val, const std::function<OutT(InT)> &func, const int64_t &n, const InT step)
+inline OutT tmlNthDerivative(const InT &val, OutT(*func)(InT), const int64_t &n, const InT step)
 {
   if (n <= 0)
     return tmlDerivative(val, func, step);
