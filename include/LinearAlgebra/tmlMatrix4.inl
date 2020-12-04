@@ -1,6 +1,6 @@
 
 template<typename T>
-inline T atMatrixDet2x2(T a, T b, T c, T d)
+inline T tmlMatrixDet2x2(T a, T b, T c, T d)
 {
   return
     (a * d) -
@@ -8,12 +8,12 @@ inline T atMatrixDet2x2(T a, T b, T c, T d)
 }
 
 template<typename T>
-inline T atMatrixDet3x3(T a, T b, T c, T d, T e, T f, T g, T h, T i)
+inline T tmlMatrixDet3x3(T a, T b, T c, T d, T e, T f, T g, T h, T i)
 {
   return
-    a * atMatrixDet2x2(e, f, h, i) -
-    b * atMatrixDet2x2(d, f, g, i) +
-    c * atMatrixDet2x2(d, e, g, h);
+    a * tmlMatrixDet2x2(e, f, h, i) -
+    b * tmlMatrixDet2x2(d, f, g, i) +
+    c * tmlMatrixDet2x2(d, e, g, h);
 }
 
 template<typename T>
@@ -62,25 +62,25 @@ template<typename T>
 inline tmlMatrix4<T> tmlMatrix4<T>::Cofactors() const
 {
   return tmlMatrix4<T>(
-    atMatrixDet3x3(m[5], m[6], m[7], m[9], m[10], m[11], m[13], m[14], m[15]),
-    -atMatrixDet3x3(m[4], m[6], m[7], m[8], m[10], m[11], m[12], m[14], m[15]),
-    atMatrixDet3x3(m[4], m[5], m[7], m[8], m[9], m[11], m[12], m[13], m[15]),
-    -atMatrixDet3x3(m[4], m[5], m[6], m[8], m[9], m[10], m[12], m[13], m[14]),
+    tmlMatrixDet3x3(m[5], m[6], m[7], m[9], m[10], m[11], m[13], m[14], m[15]),
+    -tmlMatrixDet3x3(m[4], m[6], m[7], m[8], m[10], m[11], m[12], m[14], m[15]),
+    tmlMatrixDet3x3(m[4], m[5], m[7], m[8], m[9], m[11], m[12], m[13], m[15]),
+    -tmlMatrixDet3x3(m[4], m[5], m[6], m[8], m[9], m[10], m[12], m[13], m[14]),
 
-    -atMatrixDet3x3(m[1], m[2], m[3], m[9], m[10], m[11], m[13], m[14], m[15]),
-    atMatrixDet3x3(m[0], m[2], m[3], m[8], m[10], m[11], m[12], m[14], m[15]),
-    -atMatrixDet3x3(m[0], m[1], m[3], m[8], m[9], m[11], m[12], m[13], m[15]),
-    atMatrixDet3x3(m[0], m[1], m[2], m[8], m[9], m[10], m[12], m[13], m[14]),
+    -tmlMatrixDet3x3(m[1], m[2], m[3], m[9], m[10], m[11], m[13], m[14], m[15]),
+    tmlMatrixDet3x3(m[0], m[2], m[3], m[8], m[10], m[11], m[12], m[14], m[15]),
+    -tmlMatrixDet3x3(m[0], m[1], m[3], m[8], m[9], m[11], m[12], m[13], m[15]),
+    tmlMatrixDet3x3(m[0], m[1], m[2], m[8], m[9], m[10], m[12], m[13], m[14]),
 
-    atMatrixDet3x3(m[1], m[2], m[3], m[5], m[6], m[7], m[13], m[14], m[15]),
-    -atMatrixDet3x3(m[0], m[2], m[3], m[4], m[6], m[7], m[12], m[14], m[15]),
-    atMatrixDet3x3(m[0], m[1], m[3], m[4], m[5], m[7], m[12], m[13], m[15]),
-    -atMatrixDet3x3(m[0], m[1], m[2], m[4], m[5], m[6], m[12], m[13], m[14]),
+    tmlMatrixDet3x3(m[1], m[2], m[3], m[5], m[6], m[7], m[13], m[14], m[15]),
+    -tmlMatrixDet3x3(m[0], m[2], m[3], m[4], m[6], m[7], m[12], m[14], m[15]),
+    tmlMatrixDet3x3(m[0], m[1], m[3], m[4], m[5], m[7], m[12], m[13], m[15]),
+    -tmlMatrixDet3x3(m[0], m[1], m[2], m[4], m[5], m[6], m[12], m[13], m[14]),
 
-    -atMatrixDet3x3(m[1], m[2], m[3], m[5], m[6], m[7], m[9], m[10], m[11]),
-    atMatrixDet3x3(m[0], m[2], m[3], m[4], m[6], m[7], m[8], m[10], m[11]),
-    -atMatrixDet3x3(m[0], m[1], m[3], m[4], m[5], m[7], m[8], m[9], m[11]),
-    atMatrixDet3x3(m[0], m[1], m[2], m[4], m[5], m[6], m[8], m[9], m[10])
+    -tmlMatrixDet3x3(m[1], m[2], m[3], m[5], m[6], m[7], m[9], m[10], m[11]),
+    tmlMatrixDet3x3(m[0], m[2], m[3], m[4], m[6], m[7], m[8], m[10], m[11]),
+    -tmlMatrixDet3x3(m[0], m[1], m[3], m[4], m[5], m[7], m[8], m[9], m[11]),
+    tmlMatrixDet3x3(m[0], m[1], m[2], m[4], m[5], m[6], m[8], m[9], m[10])
     );
 }
 
@@ -88,10 +88,10 @@ template<typename T>
 inline T tmlMatrix4<T>::Determinate() const
 {
   return
-    m[0] * atMatrixDet3x3(m[5], m[6], m[7], m[9], m[10], m[11], m[13], m[14], m[15])
-    - m[1] * atMatrixDet3x3(m[4], m[6], m[7], m[8], m[10], m[11], m[12], m[14], m[15])
-    + m[2] * atMatrixDet3x3(m[4], m[5], m[7], m[8], m[9], m[11], m[12], m[13], m[15])
-    - m[3] * atMatrixDet3x3(m[4], m[5], m[6], m[8], m[9], m[10], m[12], m[13], m[14]);
+    m[0] * tmlMatrixDet3x3(m[5], m[6], m[7], m[9], m[10], m[11], m[13], m[14], m[15])
+    - m[1] * tmlMatrixDet3x3(m[4], m[6], m[7], m[8], m[10], m[11], m[12], m[14], m[15])
+    + m[2] * tmlMatrixDet3x3(m[4], m[5], m[7], m[8], m[9], m[11], m[12], m[13], m[15])
+    - m[3] * tmlMatrixDet3x3(m[4], m[5], m[6], m[8], m[9], m[10], m[12], m[13], m[14]);
 }
 
 template<typename T>

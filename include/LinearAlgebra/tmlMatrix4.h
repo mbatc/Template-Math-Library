@@ -4,8 +4,8 @@
 #include "tmlVector4.h"
 #include "tmlQuaternion.h"
 
-template<typename T> inline T atMatrixDet2x2(T a, T b, T c, T d);
-template<typename T> inline T atMatrixDet3x3(T a, T b, T c, T d, T e, T f, T g, T h, T i);
+template<typename T> inline T tmlMatrixDet2x2(T a, T b, T c, T d);
+template<typename T> inline T tmlMatrixDet3x3(T a, T b, T c, T d, T e, T f, T g, T h, T i);
 
 template<typename T> class tmlMatrix4
 {
